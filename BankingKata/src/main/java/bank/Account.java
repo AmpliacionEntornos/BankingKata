@@ -4,30 +4,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
-    private int balance = 0;
-    private final List<String> transaction = new ArrayList<>();
+    private int saldo = 0;
+    private final List<String> movimientos = new ArrayList<>();
 
-    public void deposit(int amount){
-        if(amount<=0){
+    public void deposit(int monto){
+        if(monto<=0){
             throw new IllegalArgumentException("Monto invalido");
         }
-        balance+= amount;
-        transaction.add(" + "+amount + " | Balance: " + balance);
+        saldo+= monto;
+        movimientos.add(" + "+monto + " | Balance: " + saldo);
     }
-    public void withdraw(int amount) {
-        if (amount <= 0) {
+    public void withdraw(int monto) {
+        if (monto <= 0) {
             throw new IllegalArgumentException("Monto inválido");
         }
-        if (amount > balance) {
+        if (monto > saldo) {
             throw new IllegalStateException("Saldo insuficiente");
         }
-        balance -= amount;
-        transaction.add(" - " + amount + " | Balance: " + balance); }
+        saldo -= monto;
+        movimientos.add(" - " + monto + " | Balance: " + saldo); }
 
     public String printStatement() {
         StringBuilder statement = new StringBuilder("Transaccion | Saldo Resultante");
-        for (String t : transaction) {
-            statement.append("\n").append(t);
+        for (String movimiento : movimientos) {
+            statement.append("\n").append(movimiento);
         }
         return statement.toString();
     }
